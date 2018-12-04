@@ -12,8 +12,6 @@ var LARGE_2BYTE_W = 'Ｗ';
 var SMALL_V = 'v';
 var SMALL_2BYTE_V = 'ｖ';
 
-var absArgumentsCount = 0;
-
 function analyzeGrass(original) {
 	var lines = [];
 	var line = '';
@@ -26,11 +24,9 @@ function analyzeGrass(original) {
 		switch (c) {
 			case SMALL_W: case SMALL_2BYTE_W: {
 				if (process == Process.none) {
-					absArgumentsCount = 0;
 					while (i < length && ((original.charAt(i) != LARGE_W && original.charAt(i) != LARGE_2BYTE_W && original.charAt(i) != SMALL_V && original.charAt(i) != SMALL_2BYTE_V))) {
 						if (original.charAt(i) == SMALL_W || original.charAt(i) == SMALL_2BYTE_W) {
 							line += 'w';
-							absArgumentsCount++;
 						}
 						i++;
 					}
@@ -58,12 +54,6 @@ function analyzeGrass(original) {
 					}
 					line += ' ';
 					i--;
-					absArgumentsCount--;
-					if (absArgumentsCount == 0) {
-						lines.push(line);
-						line = '';
-						process = Process.none;
-					}
 				}
 				break;
 			}
