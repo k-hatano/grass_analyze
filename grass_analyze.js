@@ -161,5 +161,14 @@ function analyzeGrass(original) {
 
 	var result2 = lines2.join('\n');
 
-	return [result1, result2];
+	var lines3 = ["pri: in","     w","     succ","     out",""];
+	var line2count = lines2.length;
+	for (var i = 0; i < linesCount; i++) {
+		lines3.push("" + ("   " + (i + 1)).slice(-3) + ": " + lines2[i]);
+	}
+	lines3.push("");
+	lines3.push("fin: app(flast,flast)");
+	var result3 = lines3.join('\n');
+
+	return [result1, result2, result3];
 }
